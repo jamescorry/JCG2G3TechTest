@@ -1,0 +1,67 @@
+﻿
+@model G2G3TechnicalTest.Models.CompositionModel
+
+@{
+    ViewBag.Title = "View Basket";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var currencySymbol = @Html.Raw(@Model.CurrencySymbol);
+}
+
+<h2>View Basket</h2>
+
+<div class="container text-center">
+    <div class="col-md-5 col-sm-12">
+        <div class="bigcart"></div>
+        <h1>Your shopping cart</h1>
+        <p>
+            This data is pulled from a static Json file for demonstration purposes.
+        </p>
+        <p>
+            Select Postage Option :
+            @Html.DropDownListFor(m => m.Postage, new SelectList(Model.Postage, "Carrier", "Carrier"));
+        </p>
+    </div>
+
+    <div class="basketContainer">
+
+        <table>
+            <tr>
+                <th>Item Name</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th>Image</th>
+                <th>Category</th>
+            </tr>
+            @foreach (var item in @Model.BasketViewModel)
+            {
+                <tr>
+
+                    <td class="itemName">@item.ProductName</td>
+                    <td class="itemDescription">@item.Description</td>
+                    <td class="price">@currencySymbol@item.Cost.ToString("0.00")</td>
+                    <td class="image"><img src="@item.Image"/></td>
+                    <td class="category">@item.Category</td>
+                </tr>
+            }
+        </table>
+    </div>
+    <ul>
+        <li class="row totals">
+            <span class="itemNameTotal">Total:</span>
+            <span class="priceTotal">@currencySymbol@Model.BasketValue</span>
+            <span class="order"> <a class="text-center">ORDER</a></span>
+        </li>
+    </ul>
+
+</div>
+
+<!-- The popover content -->
+
+<div id="popover" style="display: none">
+    <a href="#"><span class="glyphicon glyphicon-pencil"></span></a>
+    <a href="#"><span class="glyphicon glyphicon-remove"></span></a>
+</div>
+
+
+

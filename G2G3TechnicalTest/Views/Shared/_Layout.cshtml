@@ -1,0 +1,47 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - G2G3 Technical Test</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <a class="navbar-brand" href="#">G2G3 Technical Test - Shopping Basket</a>
+            <div class="navbar-left">
+                <div>
+                    
+                <p>
+                    <b>@($"Welcome, {Model.UserViewModel.FirstName} {Model.UserViewModel.LastName} from {Model.UserViewModel.Location}")</b>
+                </p>
+                    <p>
+                        @($"Email : {Model.UserViewModel.Email}")
+                    </p>
+                    <p>
+                        @($"Local Currency : {Model.UserViewModel.Currency}")
+                    </p>
+
+                </div>
+            </div>
+            <div class="navbar-right">
+                <div class="container minicart"></div>
+            </div>
+        </div>
+    </nav>
+<div class="container body-content">
+    @RenderBody()
+    <hr/>
+    <footer>
+        <p>&copy; @DateTime.Now.Year - James Corry</p>
+    </footer>
+</div>
+
+@Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
